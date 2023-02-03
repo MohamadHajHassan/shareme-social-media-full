@@ -1,3 +1,5 @@
 import user from './user'
 import pin from './pin'
-export const schemaTypes = [user, pin]
+import comment from './comment'
+
+export const schemaTypes = [user, pin, comment]
