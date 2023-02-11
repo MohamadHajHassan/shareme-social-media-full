@@ -8,16 +8,14 @@ import { client } from "../client";
 import logo from "../assets/logo.png";
 import Pins from "./Pins";
 import { userQuery } from "../utils/data";
+import { fetchUser } from "./../utils/fetchUser";
 
 const Home = () => {
     const [toggleSidebar, setToggleSidebar] = useState(false);
     const [user, setUser] = useState();
     const scrollRef = useRef(null);
 
-    const userInfo =
-        localStorage.getItem("user") !== undefined
-            ? JSON.parse(localStorage.getItem("user"))
-            : localStorage.clear();
+    const userInfo = fetchUser();
 
     useEffect(() => {
         const query = userQuery(userInfo?.sub);
@@ -31,13 +29,13 @@ const Home = () => {
     });
 
     return (
-        <div className="flex bd-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
-            <div className="hidden md:flex h-screen flex-initial">
+        <div className="bd-gray-50 flex h-screen flex-col transition-height duration-75 ease-out md:flex-row">
+            <div className="hidden h-screen flex-initial md:flex">
                 <Sidebar user={user && user} />
             </div>
 
-            <div className="flex md:hidden flex-row">
-                <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
+            <div className="flex flex-row md:hidden">
+                <div className="flex w-full flex-row items-center justify-between p-2 shadow-md">
                     <HiMenu
                         fontSize={40}
                         className="cursor-pointer"
@@ -52,14 +50,14 @@ const Home = () => {
                         <img
                             src={user?.image}
                             alt="user pic"
-                            className="w-9 h-9 rounded-full"
+                            className="h-9 w-9 rounded-full"
                         />
                     </Link>
                 </div>
 
                 {toggleSidebar && (
-                    <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
-                        <div className="absolute w-full flex justify-end items-center p-2">
+                    <div className="fixed z-10 h-screen w-4/5 animate-slide-in overflow-y-auto bg-white shadow-md">
+                        <div className="absolute flex w-full items-center justify-end p-2">
                             <AiFillCloseCircle
                                 fontSize={30}
                                 className="cursor-pointer"
@@ -75,7 +73,7 @@ const Home = () => {
             </div>
 
             <div
-                className="pb-2 flex-1 h-screen overflow-y-scroll"
+                className="h-screen flex-1 overflow-y-scroll pb-2"
                 ref={scrollRef}>
                 <Routes>
                     <Route
