@@ -154,6 +154,7 @@ const PinDetail = ({ user }) => {
                     <h2 className="mt-8 mb-4 text-center text-2xl font-bold">
                         More like this
                     </h2>
+                    <MasonryLayout pins={pins} />
                 </>
             ) : (
                 <Spinner message="Loading more pins..." />
