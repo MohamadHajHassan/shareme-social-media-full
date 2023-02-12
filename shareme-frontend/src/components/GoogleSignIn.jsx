@@ -14,7 +14,6 @@ const GoogleSignIn = () => {
         const decoded = jwt_decode(response.credential);
         localStorage.setItem("user", JSON.stringify(decoded));
         const { name, sub, picture } = decoded;
-        console.log(name, sub, picture);
 
         const doc = {
             _id: sub,
