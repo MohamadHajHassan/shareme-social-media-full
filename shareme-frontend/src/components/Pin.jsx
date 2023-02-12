@@ -102,9 +102,9 @@ const Pin = ({ pin }) => {
                                     rel="noreferrer"
                                     className="flex items-center gap-2 rounded-full bg-white p-2 pl-4 pr-4 font-bold text-black opacity-70 hover:opacity-100 hover:shadow-md">
                                     <BsFillArrowUpRightCircleFill />
-                                    {destination.length > 20
-                                        ? destination.slice(8, 20)
-                                        : destination.slice(8)}
+                                    {destination.length > 12
+                                        ? `${destination.slice(0, 12)}...`
+                                        : destination}
                                 </a>
                             )}
                             {postedBy?._id === user.sub && (
